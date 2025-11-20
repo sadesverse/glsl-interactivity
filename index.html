@@ -4,10 +4,40 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>websites-demo</title>
+    <title>TINA SH3 - MY FREAK EP</title>
+    <link rel="stylesheet" href="/src/style.css">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="poster-container">
+        <!-- The SVG Background -->
+        <img src="/poster.svg" alt="Poster Design" class="poster-svg" />
+        
+        <!-- Interactive Overlay Grid -->
+        <!-- These grid items correspond to the visual sections in the SVG -->
+        <div class="poster-overlay">
+          <!-- Top Bar -->
+          <div class="zone zone-top-left" data-section="meta"></div>
+          <div class="zone zone-top-right" data-section="time"></div>
+          
+          <!-- Main Content -->
+          <div class="zone zone-title-left" data-section="my-freak"></div>
+          
+          <!-- Faces Grid (2x2) -->
+          <div class="zone zone-face zone-face-1" data-id="1"></div>
+          <div class="zone zone-face zone-face-2" data-id="2"></div>
+          <div class="zone zone-face zone-face-3" data-id="3"></div>
+          <div class="zone zone-face zone-face-4" data-id="4"></div>
+          
+          <!-- Sidebar -->
+          <div class="zone zone-sidebar-top" data-section="sidebar-1"></div>
+          <div class="zone zone-sidebar-mid" data-section="sidebar-2"></div>
+          
+          <!-- Bottom -->
+          <div class="zone zone-bottom" data-section="emblem"></div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

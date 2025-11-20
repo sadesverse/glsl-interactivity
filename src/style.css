@@ -1,96 +1,98 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bg-color: #f0f0f0; /* Light gray background like the paper */
+  --ink-color: #1a1a1a; /* Dark ink color */
+  --overlay-debug: rgba(255, 0, 0, 0.0); /* Set to 0.2 to see click zones */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: var(--bg-color);
+  color: var(--ink-color);
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  overflow-x: hidden;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+.poster-container {
+  position: relative;
+  height: 95vh;
+  aspect-ratio: 1 / 1; /* The SVG is square 300x300 */
+  max-width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.card {
-  padding: 2em;
+.poster-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
-.read-the-docs {
-  color: #888;
+/* Overlay Grid */
+.poster-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  /* Approximate grid based on the visual design */
+  grid-template-columns: 15% 10% 25% 25% 10% 15%; 
+  grid-template-rows: 10% 35% 35% 20%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.zone {
+  background-color: var(--overlay-debug);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.2s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+.zone:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  backdrop-filter: contrast(1.1);
+}
+
+/* Specific Zones Positioning */
+/* Note: These are rough approximations to match the SVG layout. 
+   We will fine-tune them visually. */
+
+/* Faces - The core 2x2 grid in the center */
+.zone-face-1 { grid-column: 3; grid-row: 2; }
+.zone-face-2 { grid-column: 4; grid-row: 2; }
+.zone-face-3 { grid-column: 3; grid-row: 3; }
+.zone-face-4 { grid-column: 4; grid-row: 3; }
+
+/* Text Areas */
+.zone-title-left { grid-column: 2; grid-row: 2 / span 2; } /* MY FREAK vertical */
+
+/* Sidebar */
+.zone-sidebar-top { grid-column: 6; grid-row: 1 / span 2; }
+.zone-sidebar-mid { grid-column: 6; grid-row: 3; }
+
+/* Bottom */
+.zone-bottom { grid-column: 3 / span 2; grid-row: 4; }
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .poster-container {
+    height: auto;
+    width: 100%;
   }
 }
